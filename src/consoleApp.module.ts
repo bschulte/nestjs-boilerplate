@@ -1,9 +1,7 @@
 import { Module, MiddlewareConsumer, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ServeStaticModule } from '@nestjs/serve-static';
 import { ConsoleModule } from 'nestjs-console';
-import { join } from 'path';
 
 import { DotenvModule } from './modules/dotenv/dotenv.module';
 import { DotenvService } from './modules/dotenv/dotenv.service';
