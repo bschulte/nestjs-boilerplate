@@ -1,0 +1,8 @@
+node_modules
+logs
+app-binaries
+dist
+public
+results
+test
+.vscode
