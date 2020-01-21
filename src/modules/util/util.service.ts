@@ -7,8 +7,6 @@ import { BackendLogger } from '../logger/BackendLogger';
 import { UserService } from 'src/modules/user/user.service';
 import { DotenvService } from '../dotenv/dotenv.service';
 import { User } from 'src/modules/user/user.entity';
-import { AppInfo } from '../appInfo/appInfo.entity';
-import { AppSubmission } from '../appSubmission/appSubmission.entity';
 
 @Injectable()
 export class UtilService {

@@ -5,7 +5,6 @@ import { BackendLogger } from '../logger/BackendLogger';
 import { UserService } from 'src/modules/user/user.service';
 import { UserAccessService } from 'src/modules/userAccess/userAccess.service';
 import { EmailService } from 'src/modules/email/email.service';
-import { AppSubmissionService } from 'src/modules/appSubmission/appSubmission.service';
 import { UpdateGroupUserDto } from 'src/modules/groupAdmin/dtos/updateGroupUser.dto';
 import { AuditService } from 'src/modules/audit/audit.service';
 
@@ -15,9 +14,7 @@ export class GroupAdminService {
 
   constructor(
     private readonly userService: UserService,
-    private readonly userAccessService: UserAccessService,
     private readonly emailService: EmailService,
-    private readonly appSubmissionService: AppSubmissionService,
     private readonly auditService: AuditService,
   ) {}
 
@@ -46,17 +43,6 @@ export class GroupAdminService {
       },
     );
 
-    // Set the user access to not have restrictions on app submissions
-    const user = await this.userService.findOneWithPassword(email);
-    await this.userAccessService.update(
-      { userId: user.id },
-
-      {
-        maxAndroidSubmissions: 0,
-        maxIosSubmissions: 0,
-      },
-    );
-
     // Email the new user
     await this.emailService.sendEmail({
       templateName: 'emailNewUser',
@@ -78,14 +64,7 @@ export class GroupAdminService {
 
   public async getUsers(group: string) {
     this.logger.debug(`Getting users for group: ${group}`);
-    const users: any[] = await this.userService.findGroupUsers(group);
-
-    // Get how many apps each user has submitted
-    for (const user of users) {
-      user.appsSubmitted = await this.appSubmissionService.count({
-        userId: user.id,
-      });
-    }
+    const users = await this.userService.findGroupUsers(group);
 
     return users;
   }
