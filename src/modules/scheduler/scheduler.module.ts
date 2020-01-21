@@ -1,9 +1,8 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { SchedulerService } from './scheduler.service';
-import { AppSubscriptionModule } from '../appSubscription/appSubscription.module';
 
 @Module({
-  imports: [AppSubscriptionModule],
+  imports: [],
   controllers: [],
   providers: [SchedulerService],
   exports: [SchedulerService],

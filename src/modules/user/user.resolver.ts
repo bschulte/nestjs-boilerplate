@@ -10,7 +10,6 @@ import { User } from './user.entity';
 import { UserService } from './user.service';
 import { UseGuards } from '@nestjs/common';
 import { AdminGuard } from '../auth/guards/admin.guard';
-import { AppSubmissionService } from '../appSubmission/appSubmission.service';
 import { UserAccess } from '../userAccess/userAccess.entity';
 import { UserAccessService } from '../userAccess/userAccess.service';
 import { GroupUserAccess } from '../groupUserAccess/groupUserAccess.entity';
@@ -23,7 +22,6 @@ import { AuthGuard } from 'src/shared/guards/auth.guard';
 export class UserResolver {
   constructor(
     private readonly userService: UserService,
-    private readonly appSubmissionService: AppSubmissionService,
     private readonly userAccessService: UserAccessService,
     private readonly groupUserAccessService: GroupUserAccessService,
   ) {}
@@ -45,12 +43,6 @@ export class UserResolver {
   public async adminUpdateUser(@Args('userInput') userInput: UserInputDto) {
     await this.userService.update({ id: userInput.id }, userInput);
     return this.userService.findOne({ id: userInput.id });
-  }
-
-  @UseGuards(AdminGuard)
-  @ResolveProperty(returns => Number)
-  public async appSubmissionsCount(@Parent() user: User) {
-    return this.appSubmissionService.count({ userId: user.id });
   }
 
   @UseGuards(AdminGuard)

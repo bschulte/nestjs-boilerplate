@@ -11,16 +11,11 @@ import { UserModule } from './modules/user/user.module';
 import { SessionMiddleware } from './middleware/session.middleware';
 import { AuthModule } from './modules/auth/auth.module';
 import { EmailModule } from './modules/email/email.module';
-import { AppIssueModule } from './modules/appIssue/appIssue.module';
 import { AuthMiddleware } from './middleware/auth.middleware';
 import { UtilModule } from './modules/util/util.module';
 import { AuditModule } from './modules/audit/audit.module';
-import { MigrationModule } from 'src/modules/migration/migration.module';
 import { NotificationModule } from './modules/notification/notification.module';
-import { AnalysisCustomizationModule } from 'src/modules/analysisCustomization/analysisCustomization.module';
 import { GroupAdminModule } from 'src/modules/groupAdmin/groupAdmin.module';
-import { AppSubmissionModule } from 'src/modules/appSubmission/appSubmission.module';
-import { MdmIntegrationModule } from './modules/mdmIntegration/mdmIntegration.module';
 import { UserConfigModule } from './modules/userConfig/userConfig.module';
 import { DatabaseModule } from './modules/database/database.module';
 import { SchedulerModule } from './modules/scheduler/scheduler.module';
@@ -57,16 +52,11 @@ import { SchedulerModule } from './modules/scheduler/scheduler.module';
     AuthModule,
     EmailModule,
     AuditModule,
-    AppSubmissionModule,
-    AppIssueModule,
     ConsoleModule,
-    MigrationModule,
     NotificationModule,
-    AnalysisCustomizationModule,
     GroupAdminModule,
     forwardRef(() => UtilModule),
     forwardRef(() => UserModule),
-    MdmIntegrationModule,
     UserConfigModule,
     DatabaseModule,
     SchedulerModule,
