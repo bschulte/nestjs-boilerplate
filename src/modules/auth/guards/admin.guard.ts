@@ -14,6 +14,6 @@ export class AdminGuard implements CanActivate {
 
     const { user } = request;
 
-    return user.kaiAccess;
+    return user.isAdmin;
   }
 }

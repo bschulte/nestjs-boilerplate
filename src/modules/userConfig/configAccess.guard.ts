@@ -28,6 +28,6 @@ export class ConfigAccessGuard implements CanActivate {
     const { user } = request;
 
     // Allow configs to be updated by the user who owns them or site admins
-    return user.kaiAccess || user.id === userId;
+    return user.isAdmin || user.id === userId;
   }
 }
