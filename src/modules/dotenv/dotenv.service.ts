@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
-import { Injectable, Global } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class DotenvService {
